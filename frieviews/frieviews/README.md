@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # frieviews
 
 A new Flutter application.
@@ -15,7 +14,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-=======
-# Frieviews
-Social App where you can see friends' reviews of movies, foodplaces etc.
->>>>>>> eb32fdc718ce357c8e8d013d56a293fb5f91fadc

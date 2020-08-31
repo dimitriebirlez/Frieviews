@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:frieviews/services/auth.dart';
-import 'package:frieviews/shared/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -46,7 +45,6 @@ class _SignInState extends State<SignIn> {
             children: <Widget>[
               SizedBox(height: 10.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Email') ,
                 validator: (val) => val.isEmpty ? 'Enter an email' : null,
                 onChanged: (val){
                   setState(() {
@@ -57,7 +55,6 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: 10.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Password') ,
                 obscureText: true,
                 validator: (val) => val.length < 6 ? 'Enter a 6+ char password' : null,
                 onChanged: (val){
