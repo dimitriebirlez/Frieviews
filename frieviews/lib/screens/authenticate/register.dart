@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frieviews/services/auth.dart';
 import 'package:frieviews/shared/constants.dart';
-import 'package:frieviews/shared/loading.dart';
 
 class Register extends StatefulWidget {
 
@@ -16,7 +15,6 @@ class _RegisterState extends State<Register> {
 
   final AuthService _auth = AuthService();
   final _formkey = GlobalKey<FormState>();
-  bool loading= false;
 
   //text field state
   String email = '';
@@ -26,7 +24,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading() : Scaffold(
+    return Scaffold(
       backgroundColor: Colors.teal,
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
@@ -75,13 +73,9 @@ class _RegisterState extends State<Register> {
                   ),
                   onPressed: () async {
                     if(_formkey.currentState.validate()){
-                      setState(() {
-                        loading = true;
-                      });
                      dynamic result = await _auth.registermail(email, password);
                      if(result==null)
                         setState(() {
-                          loading = false;
                           error='n are mail bun';
                         });
                     }

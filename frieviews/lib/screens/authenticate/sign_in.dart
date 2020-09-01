@@ -3,7 +3,6 @@ import 'package:frieviews/services/auth.dart';
 import 'package:frieviews/shared/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:frieviews/shared/loading.dart';
 
 class SignIn extends StatefulWidget {
 
@@ -18,7 +17,6 @@ class _SignInState extends State<SignIn> {
 
   final AuthService _auth = AuthService();
   final _formkey = GlobalKey<FormState>();
-  bool loading = false;
 
   //text field state
   String email = '';
@@ -27,7 +25,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading() : Scaffold(
+    return Scaffold(
       backgroundColor: Colors.teal,
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
@@ -77,13 +75,9 @@ class _SignInState extends State<SignIn> {
                 ),
               onPressed: () async {
                 if(_formkey.currentState.validate()){
-                  setState(() {
-                    loading = true;
-                  });
                   dynamic result = await _auth.signinmail(email, password);
                   if(result==null)
                     setState(() {
-                      loading=false;
                       error='nu se poate loga';
                     });
                 }
