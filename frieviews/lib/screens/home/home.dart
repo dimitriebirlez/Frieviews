@@ -1,4 +1,5 @@
 
+import 'package:frieviews/models/movie.dart';
 import 'package:frieviews/services/auth.dart';
 import 'package:frieviews/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,7 +13,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot>.value(
+    return StreamProvider<List<Movie>>.value(
       value: DatabaseService().movies,
       child: Scaffold(
         backgroundColor: Colors.white70,
