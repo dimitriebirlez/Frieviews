@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:frieviews/models/movie.dart';
+import 'package:frieviews/models/theUser.dart';
 
 class DatabaseService {
 
@@ -9,7 +11,7 @@ class DatabaseService {
   // collection reference
   final CollectionReference movieCollection = FirebaseFirestore.instance.collection('movies');
 
-  Future<void> updateUserData(String movietitle, String name, int rating) async {
+  Future<void> updateUserData(String movietitle, String name, String rating) async {
     return await movieCollection.doc(uid).set({
       'movietitle': movietitle,
       'name': name,
@@ -24,15 +26,28 @@ class DatabaseService {
       return Movie(
         movietitle: doc.data()['movietitle'] ?? '',
         name: doc.data()['name'] ?? '',
-        rating: doc.data()['rating'] ?? 0
+        rating: doc.data()['rating'] ?? ''
       );
     }).toList();
   }
-
+  //userData from snapshot
+  UserData _userdatafromsnapshot(DocumentSnapshot snapshot){
+    return UserData(
+      uid: uid,
+      movietitle: snapshot.data()['movititle'],
+      name: snapshot.data()['name'],
+      rating: snapshot.data()['rating']
+    );
+  }
   // get movies stream
   Stream<List<Movie>> get movies {
     return movieCollection.snapshots()
     .map(_movieListfromSnapshot);
   }
 
+  //get user doc stream
+  Stream<UserData> get userData {
+    return movieCollection.doc(uid).snapshots()
+    .map(_userdatafromsnapshot);
+  }
 }

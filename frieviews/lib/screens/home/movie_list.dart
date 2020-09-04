@@ -15,7 +15,7 @@ class _MovieListState extends State<MovieList> {
   @override
   Widget build(BuildContext context) {
 
-    final movies = Provider.of<List<Movie>>(context);
+    final movies = Provider.of<List<Movie>>(context) ?? [];
 //    //print(brews.documents);
 //    for (var doc in movies.docs) {
 //      print(doc.data());

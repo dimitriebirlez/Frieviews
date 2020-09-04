@@ -1,7 +1,7 @@
 class Movie {
   final String movietitle;
   final String name;
-  final int rating;
+  final String rating;
 
   Movie({this.movietitle, this.name, this.rating});
 

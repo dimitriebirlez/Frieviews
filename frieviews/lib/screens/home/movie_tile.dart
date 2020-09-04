@@ -16,7 +16,7 @@ class MovieTile extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25.0,
-            backgroundColor: Colors.yellow[movie.rating*100],
+            backgroundColor: Colors.yellow[100],
           ),
           title: Text(movie.movietitle),
           subtitle: Text('by ${movie.name}'),
