@@ -1,6 +1,6 @@
 
 import 'package:frieviews/models/movie.dart';
-import 'package:frieviews/screens/home/settings_form.dart';
+import 'package:frieviews/screens/home/new_review.dart';
 import 'package:frieviews/services/auth.dart';
 import 'package:frieviews/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,14 +15,14 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    void _showSettingsPanel() {
-      showModalBottomSheet(context: context, builder: (context){
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
-          child: SettingsForm(),
-        );
-      });
-    }
+//    void _showSettingsPanel() {
+//      showModalBottomSheet(context: context, builder: (context){
+//        return Container(
+//          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
+//          child: SettingsForm(),
+//        );
+//      });
+//    }
 
     return StreamProvider<List<Movie>>.value(
       value: DatabaseService().movies,
@@ -37,13 +37,18 @@ class Home extends StatelessWidget {
               await _auth.signOut();
             }, icon: Icon(Icons.person),
                 label: Text('logout')),
-            FlatButton.icon(onPressed: ()
-            { _showSettingsPanel();},
-                icon: Icon(Icons.settings),
-                label: Text('settings'))
+
           ],
         ),
         body: MovieList(),
+        floatingActionButton: FloatingActionButton(onPressed: ()
+        { Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NewReview()),
+        );},
+            child: const Icon(Icons.add),
+            backgroundColor: Colors.green,
+        ),
       ),
     );
   }

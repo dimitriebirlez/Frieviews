@@ -8,9 +8,10 @@ class TheUser {
 
 class UserData{
   final String uid;
+  final String username;
   final String movietitle;
-  final String name;
+  final String review;
   final String rating;
 
-  UserData({this.uid,this.movietitle,this.name,this.rating});
+  UserData({this.uid,this.movietitle,this.username,this.review,this.rating});
 }

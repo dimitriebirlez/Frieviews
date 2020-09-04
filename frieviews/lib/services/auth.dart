@@ -49,13 +49,13 @@ class AuthService {
   }
 
   //register mail
-  Future registermail(String email, String password) async {
+  Future registermail(String email, String password, String username) async {
     try{
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = result.user;
 
       //se creeaza document nou pt fiecare user
-      await DatabaseService(uid: user.uid).updateUserData('What is the name of the movie?','name', '1');
+      await DatabaseService(uid: user.uid).updateUserData('What is the name of the movie?',username,'Thoghts about the movie', '1');
 
       return _userFromFirebaseUser(user);
     }catch(e){

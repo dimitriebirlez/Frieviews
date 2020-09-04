@@ -11,10 +11,11 @@ class DatabaseService {
   // collection reference
   final CollectionReference movieCollection = FirebaseFirestore.instance.collection('movies');
 
-  Future<void> updateUserData(String movietitle, String name, String rating) async {
+  Future<void> updateUserData(String movietitle, String username,String review, String rating) async {
     return await movieCollection.doc(uid).set({
       'movietitle': movietitle,
-      'name': name,
+      'username': username,
+      'review': review,
       'rating': rating,
     });
   }
@@ -25,7 +26,8 @@ class DatabaseService {
     return snapshot.docs.map((doc){
       return Movie(
         movietitle: doc.data()['movietitle'] ?? '',
-        name: doc.data()['name'] ?? '',
+        username: doc.data()['username'] ?? '',
+        review: doc.data()['review'] ?? '',
         rating: doc.data()['rating'] ?? ''
       );
     }).toList();
@@ -35,7 +37,8 @@ class DatabaseService {
     return UserData(
       uid: uid,
       movietitle: snapshot.data()['movititle'],
-      name: snapshot.data()['name'],
+      username: snapshot.data()['username'],
+      review: snapshot.data()['review'],
       rating: snapshot.data()['rating']
     );
   }

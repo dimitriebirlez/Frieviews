@@ -20,6 +20,7 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String error = '';
+  String username = '';
 
 
   @override
@@ -65,6 +66,16 @@ class _RegisterState extends State<Register> {
                   },
                 ),
                 SizedBox(height: 10.0),
+                TextFormField(
+                  decoration: textInputDecoration.copyWith(hintText: 'Username') ,
+                  obscureText: true,
+                  validator: (val) => val.length < 6 ? 'Enter a 6+ char username' : null,
+                  onChanged: (val){
+                    setState(() {
+                      username = val;
+                    });
+                  },
+                ),
                 RaisedButton(
                   color: Colors.red,
                   child: Text('Register',
@@ -73,7 +84,7 @@ class _RegisterState extends State<Register> {
                   ),
                   onPressed: () async {
                     if(_formkey.currentState.validate()){
-                     dynamic result = await _auth.registermail(email, password);
+                     dynamic result = await _auth.registermail(email, password, username);
                      if(result==null)
                         setState(() {
                           error='n are mail bun';
