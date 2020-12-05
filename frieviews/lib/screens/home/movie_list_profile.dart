@@ -6,12 +6,15 @@ import 'package:frieviews/models/movie.dart';
 import 'package:provider/provider.dart';
 import 'package:frieviews/screens/home/movie_tile.dart';
 
-class MovieList extends StatefulWidget {
+class MovieListProfile extends StatefulWidget {
+  String currentusername;
+  MovieListProfile({this.currentusername});
   @override
-  _MovieListState createState() => _MovieListState();
+  _MovieListProfileState createState() => _MovieListProfileState();
 }
 
-class _MovieListState extends State<MovieList> {
+class _MovieListProfileState extends State<MovieListProfile> {
+
   @override
   Widget build(BuildContext context) {
 
@@ -26,8 +29,9 @@ class _MovieListState extends State<MovieList> {
 //    print(movie.rating);
 //    });
     int i;
+
     for(i=0;i<movies.length;i++)
-      if (movies[i].movietitle == '') {
+      if (movies[i].username != widget.currentusername||movies[i].movietitle=='') {
         movies.removeAt(i);
         i--;
       }

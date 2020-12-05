@@ -83,13 +83,20 @@ class _RegisterState extends State<Register> {
                         color: Colors.white70),
                   ),
                   onPressed: () async {
+                    final valid = await _auth.usernameCheck(username);
+                    if(!valid){
+                      setState(() {
+                        error='username-ul este deja folosit';
+                      });
+                    }
+                    else{
                     if(_formkey.currentState.validate()){
                      dynamic result = await _auth.registermail(email, password, username);
                      if(result==null)
                         setState(() {
                           error='n are mail bun';
                         });
-                    }
+                    }}
 
                   },
                 ),

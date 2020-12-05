@@ -36,7 +36,7 @@ class DatabaseService {
   UserData _userdatafromsnapshot(DocumentSnapshot snapshot){
     return UserData(
       uid: uid,
-      movietitle: snapshot.data()['movititle'],
+      movietitle: snapshot.data()['movietitle'],
       username: snapshot.data()['username'],
       review: snapshot.data()['review'],
       rating: snapshot.data()['rating']

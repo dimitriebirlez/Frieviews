@@ -38,7 +38,7 @@ class _NewReviewState extends State<NewReview> {
           UserData userData =snapshot.data;
             return Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.green[400],
+                backgroundColor: Colors.teal,
                 title: Text('New Review'),
               ),
               body: Form(
